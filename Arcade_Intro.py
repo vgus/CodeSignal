@@ -1,3 +1,5 @@
+#region The Journey Begins
+
 def centuryFromYear(year):
     century = int(((year-1) / 100) +1)
     return century
@@ -7,7 +9,9 @@ def checkPalindrome(inputString):
         return True
     else:
         return False
+#endregion The Journey Begins
 
+#region Edge of the Ocean
 def adjacentElementProduct(inputArray):
     inic = 0
     salida = []
@@ -120,9 +124,11 @@ def matrixElementsSum(matrix):
     return suma
     
 
+#endregion Edge of the Ocean
 
 
 if __name__ == '__main__':
+    #region ejemplos
     '''
     year = 1905
     print(centuryFromYear(year))
@@ -150,6 +156,7 @@ if __name__ == '__main__':
     #sequence = [1, 2, 1, 2] #false
     print(almostIncreasingSequence(sequence))
     '''
+    #endregion ejemplos
 
     #matrix = [[0,1,1,2], [0,5,0,0], [2,0,3,3]]
     matrix = [[1,1,1,0], [0,5,0,1], [2,1,3,10]]

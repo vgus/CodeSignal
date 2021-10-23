@@ -1,3 +1,5 @@
+//#region Smooth Sailing
+
 function allLongestStrings(inputArray) 
 {   
     var maxSize = 0;
@@ -166,6 +168,9 @@ function stringInvertido(texto) {
     return texto2.split('').reverse().join('');
 }
 
+//#endregion region Smooth Sailing
+
+//#region Exploring the Waters
 
 function alternatingSums(a) {
     t1 = 0;
@@ -350,6 +355,10 @@ function palindromeRearranging(inputString) {
     return salida
 }
 
+//#endregion Exploring the Waters
+
+//#region Island of Knowledge
+
 function areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) {
     
     return (yourLeft+yourRight == friendsLeft+friendsRight && (Math.max(yourLeft, yourRight) == Math.max(friendsLeft, friendsRight)))
@@ -407,6 +416,94 @@ function avoidObstacles(inputArray) {
     return salida
 }
 
+function boxBlur(image) {
+    var x = image.length - 2
+    var y = image[0].length - 2
+    var sal = []
+    var paso = []
+    for (let i = 0; i < image.length; i++)
+    {
+        //console.log("En el indice: "+i)
+        //console.log(image[i])
+        let salx = []
+        for (let j = 0; j < image[i].length  ; j++)
+        {
+            if (j >= y)
+                break
+            let data = image[i][j] + image[i][j+1] + image[i][j+2]
+            salx.push(data)
+            console.log(salx)
+        }
+        paso.push(salx)
+        
+    }
+    console.log(paso)
+
+    for (let i = 0; i < paso.length; i++)
+    {
+        if (i >= x)
+            break
+        let saly = []
+        for (let j = 0; j < paso[i].length; j++)
+        {   
+            let data = Math.trunc((paso[i][j] + paso[i+1][j] + paso[i+2][j])/9)
+            //console.log(data)
+            saly.push(data)
+        }
+        sal.push(saly)
+    }
+
+
+    return sal
+
+}
+
+function minesweeper(matrix) {
+    
+    var sal = []
+    var falseArray = new Array(matrix[0].length+2).fill(false)
+    matrix.unshift(falseArray)
+    matrix.push(falseArray)
+
+    for (let i = 1; i<matrix.length-1;i++)
+    {
+        matrix[i].unshift(false)
+        matrix[i].push(false)
+    }
+
+    for (let i = 1; i<matrix.length-1;i++)
+    {
+        let saly = []
+        
+        for (let j = 1; j<matrix[i].length-1;j++)
+        {
+            
+            saly[j-1] = Number(matrix[i-1][j-1])+Number(matrix[i-1][j])+Number(matrix[i-1][j+1])+
+                Number(matrix[i][j-1])+Number(matrix[i][j+1])+
+                Number(matrix[i+1][j-1])+Number(matrix[i+1][j])+Number(matrix[i+1][j+1])
+            
+        }
+        sal.push(saly)
+
+    }
+    //console.table(matrix)
+    return sal
+}
+
+//#endregion Island of Knowledge
+
+
+//#region Rains of Reason
+function arrayReplace(inputArray, elemToReplace, substitutionElem) {
+    for (let i = 0; i<inputArray.length;i++)
+    {
+        if(inputArray[i]==elemToReplace)
+            inputArray[i] = substitutionElem
+    }
+    return inputArray
+}
+
+//#endregion Rains of Reason
 
 
 //#region Ejemplos
@@ -497,9 +594,38 @@ inputString ="255.255.00.255";
 inputString ="172.16.254.1";
 inputString = "64.233.161.00";
 console.log(isIPv4Address(inputString));
+
+
+var inputArray = [5, 3, 6, 7, 9];
+console.log(avoidObstacles(inputArray))
+
+
+
+//image = [[1,1,1],[1,7,1],[1,1,1]]
+
+//image =[[7,4,0,1], [5,6,2,2], [6,10,7,8], [1,4,2,0]]
+
+//image =[[36,0,18,9], [27,54,9,0], [81,63,72,45]]
+
+image =[[36,0,18,9,9,45,27], [27,0,254,9,0,63,90], [81,255,72,45,18,27,0], [0,0,9,81,27,18,45], [45,45,227,227,90,81,72], [45,18,9,255,9,18,45], [27,81,36,127,255,72,81]]
+
+console.table(boxBlur(image))
+
+
+//let matrix = [[true,false,false], [false,true,false], [false,false,false]]
+//let matrix =[[false,false,false], [false,false,false]]
+ let matrix =[[false,true,true,false], [true,true,false,true], [false,false,true,false]]
+//let matrix =[[true,false],[true,false],  [false,true],  [false,false],  [false,false]]
+
+console.table(matrix)
+console.table(minesweeper(matrix))
+
 */
 
 //#endregion Ejemplos
 
-var inputArray = [5, 3, 6, 7, 9];
-console.log(avoidObstacles(inputArray))
+
+inputArray = [1, 2, 1]
+elemToReplace= 1
+substitutionElem= 3
+console.log(arrayReplace(inputArray, elemToReplace, substitutionElem))
