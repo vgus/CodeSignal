@@ -503,7 +503,101 @@ function arrayReplace(inputArray, elemToReplace, substitutionElem) {
     return inputArray
 }
 
+function evenDigitsOnly(n) {
+    let m
+    m = n/10
+    let digitToTest = m-Math.trunc(m)
+    digitToTest = Math.round(digitToTest*10)
+    //digitToTest = Math.trunc(digitToTest)
+    
+    
+    let restDigits = Math.trunc(m)
+    if (n==0)
+    {
+        return true
+    }
+    else if ((digitToTest%2)!=0)
+    {
+        return false
+    }
+    else
+    {
+        return evenDigitsOnly(restDigits)
+    }
+
+}
+
+
+function variableName(name) {
+    let reStart = /^[\d\s]/
+    let re = /^\w+$/
+    console.log(name)
+    if (reStart.test(name))
+        return false
+    else    
+        n =  re.test(name)
+    //let n = name.search(re)
+    return n
+}
+
+function alphabeticShift(inputString) {
+    let sal = ''
+    
+    for(let i=0; i<inputString.length;i++)
+    {
+        let val = inputString.charCodeAt(i)
+        let nextVal
+        if(val == 122)
+        {
+            nextVal = 97
+        }
+        else
+        {
+            nextVal = val+1
+        }
+        //console.log(nextVal)
+        let nextLet = String.fromCharCode(nextVal)
+        //console.log(nextLet)
+        sal = sal.concat(nextLet)
+    }
+    return sal
+}
+
+function chessBoardCellColor(cell1, cell2) {
+    if(getColor(cell1) == getColor(cell2))
+        return true
+    else 
+        return false
+
+}
+
+function getColor(cell){
+    col = cell.charCodeAt(0)-64
+    row = Number(cell[1])
+    if(col%2==0)
+    {
+        if(row%2==0)
+            return "negro"
+        else
+            return "blanco"
+    }
+    else
+    {
+        if(row%2==0)
+            return "blanco"
+        else
+            return "negro"
+    }
+}
+
 //#endregion Rains of Reason
+
+//#region Through the Fog
+
+
+
+//#endregion Through the Fog
+
 
 
 //#region Ejemplos
@@ -620,12 +714,33 @@ console.table(boxBlur(image))
 console.table(matrix)
 console.table(minesweeper(matrix))
 
-*/
-
-//#endregion Ejemplos
-
-
 inputArray = [1, 2, 1]
 elemToReplace= 1
 substitutionElem= 3
 console.log(arrayReplace(inputArray, elemToReplace, substitutionElem))
+
+n = 248622
+//n=15
+console.log(evenDigitsOnly(n))
+
+let name
+name = "var_1__Int"
+name = '[A]'
+
+name = "va[riable0"
+//name = "qq-q"
+console.log(variableName(name))
+
+
+
+//inputString = "a"
+inputString = "crazy"
+console.log(alphabeticShift(inputString))7
+
+*/
+
+//#endregion Ejemplos
+
+cell1 = "A1" 
+cell2 = "C3"
+console.log(chessBoardCellColor(cell1, cell2)) // true.
