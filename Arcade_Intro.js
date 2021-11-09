@@ -721,12 +721,43 @@ function extractEachKth(inputArray, k) {
 }
 
 
+function firstDigit(inputString) {
+    let re = /^\D*(\d).*$/i
+    let sal = inputString.match(re)
+    return sal[1]
+}
+
+function differentSymbolsNaive(s) {
+    let sal = {}
+    for(let i=0; i<s.length;i++)
+    {
+        sal[s[i]] = 1
+    }
+    return Object.keys(sal).length
+}
+
+function arrayMaxConsecutiveSum(inputArray, k) {
+    let maySum = 0
+    for (let i = 0;i<=inputArray.length-k; i ++ )
+    {   
+        let sum = 0
+        for(let j = i; j < i+k ; j++)
+        {
+            sum += inputArray[j]
+        }
+        if (sum > maySum)
+            maySum = sum
+        console.log(sum)
+    }
+    return maySum
+}
+
 //#endregion Diving Deeper
 
+//#region Dark Wilderness
 
 
-
-
+//#endregion Dark Wilderness
 
 
 //#region Ejemplos
@@ -922,12 +953,29 @@ inputArray=["abc", "abx", "axx", "abc"] //false
 console.log(stringsRearrangement(inputArray))// = false.
 //console.log(diffByAChar("bbc","abc"))
 
-*/
 
-//#endregion Ejemplos
 
 
 inputArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
 k = 3
 
 console.log(extractEachKth(inputArray,k))
+
+inputString = "var_1__Int" 
+//inputString = "q2q-q", 
+inputString = "0ss"
+
+console.log(firstDigit(inputString))
+
+
+s = "cabca"
+console.log(differentSymbolsNaive(s)) //= 3
+*/
+
+//#endregion Ejemplos
+
+
+inputArray = [2, 3, 5, 1, 6]
+k = 2
+
+console.log(arrayMaxConsecutiveSum(inputArray, k)) //= 8
