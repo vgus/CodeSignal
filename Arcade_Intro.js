@@ -634,7 +634,7 @@ function absoluteValuesSumMinimization(a) {
     return a[vecSum.findIndex(value => value == minSum)]
 
 }
-
+//TODO Esto aún no lo termino, pienso en otra cosa por lo mientras
 function stringsRearrangement(inputArray) {
     let numElem = inputArray.length
     var salida = false
@@ -659,7 +659,8 @@ function stringsRearrangement(inputArray) {
             let nextElem = evalArray[0]
             
             
-            if ((diffByAChar(element,elemChang))&&diffByAChar(elemChang,nextElem))
+            if ((element == elemChang && i==0 && diffByAChar(elemChang,nextElem) )|| 
+            diffByAChar(element,elemChang)&&diffByAChar(elemChang,nextElem))
             {
                 
                 salida = stringsRearrangement(evalArray)
@@ -673,6 +674,10 @@ function stringsRearrangement(inputArray) {
    return salida
     
 }
+
+//#endregion Through the Fog
+
+//#region Diving Deeper
 
 function diffByAChar(str1, str2)
 {
@@ -698,8 +703,29 @@ function diffByAChar(str1, str2)
         return sal
 }
 
+function extractEachKth(inputArray, k) {
+    let sal = []
+    let count = 1 
+    for (let i=0;i<inputArray.length;i++)
+    {
+        if(i==(count*k-1))
+        {    
+            count += 1
+            continue
+        }
+        else
+            sal.push(inputArray[i])
+        
+    }
+    return sal
+}
 
-//#endregion Through the Fog
+
+//#endregion Diving Deeper
+
+
+
+
 
 
 
@@ -878,9 +904,6 @@ a =[2, 4, 7]
 console.log(absoluteValuesSumMinimization(a)) //4.
 
 
-*/
-
-//#endregion Ejemplos
 
 //inputArray = [1,2,3]
 //inputArray = [6,5,4,3,1,1,2,1]
@@ -888,13 +911,23 @@ console.log(absoluteValuesSumMinimization(a)) //4.
 //inputArray = ["aba", "bbb", "bab"] //false
 //inputArray = ["ab", "bb", "aa"] //true
 //inputArray=["a",  "b",  "c"]
-//inputArray=["q", "q"] // false
+inputArray=["q", "q"] // false
 //inputArray=["abc",  "bef",  "bcc",  "bec",  "bbc",  "bdc"] //true
-//inputArray=["abc", "abx", "axx", "abc"] //false
-inputArray=["abc",  "abx",  "axx",  "abx",  "abc"] // true
+inputArray=["abc", "abx", "axx", "abc"] //false
+//inputArray=["abc",  "abx",  "axx",  "abx",  "abc"] // true
 //inputArray=["abc", "abx", "axx", "abc"] //false
 
 //inputArray=["abc",  "bef",  "bcc",  "bec",  "bbc",  "bdc"] //true
 
 console.log(stringsRearrangement(inputArray))// = false.
 //console.log(diffByAChar("bbc","abc"))
+
+*/
+
+//#endregion Ejemplos
+
+
+inputArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] 
+k = 3
+
+console.log(extractEachKth(inputArray,k))
