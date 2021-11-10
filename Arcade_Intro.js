@@ -863,8 +863,67 @@ function bishopAndPawn(bishop, pawn) {
 //#region Eruption of Light
 
 
-//#endregion Eruption of Light
 
+function isBeautifulString(inputString) {
+    let sal = true
+    countStringElem =  {}
+    for (let i =0; i<inputString.length;i++)
+    {
+        if (countStringElem[inputString[i]]==undefined)
+            countStringElem[inputString[i]] = 1
+        else
+            countStringElem[inputString[i]] += 1
+    }
+    let letters = Object.keys(countStringElem).sort()
+    if (letters.length<2 && letters[0] != 'a')
+        sal = false
+    else
+    {
+        for (i=1;i<letters.length;i++)
+        {
+
+            let firstLetter = letters[i-1].charCodeAt(0)
+            let secLetter = letters[i].charCodeAt(0)
+            
+            if(letters[0]!='a'||countStringElem[letters[i-1]]<countStringElem[letters[i]]||(secLetter-firstLetter)>1)
+            {
+                sal = false
+                break
+            }
+        }
+    }
+    
+    //let arrayS = Array.from(inputString).sort()
+    //let setS = new Set(arrayS)
+    return sal
+
+}
+
+function findEmailDomain(address) {
+    let cad = address.split('').reverse().join('')
+    let domain = cad.split('@')[0]
+    return domain.split('').reverse().join('')
+}
+
+function buildPalindrome(st) {
+    let sal = st
+    if(isPalindrome(st))
+    {
+        return sal
+    }
+    else
+    {
+
+    }
+    
+}
+function isPalindrome(str)
+{
+
+}
+
+
+//#endregion Eruption of Light
 
 
 //#region Ejemplos
@@ -1126,8 +1185,7 @@ n = 100 // 1
 n = 91 //2
 
 console.log(digitDegree(n))
-*/
-//#endregion Ejemplos
+
 
 
 bishop = "h8"
@@ -1137,3 +1195,21 @@ pawn = "c3" //= true
 
 console.log(bishopAndPawn(bishop, pawn)) 
 
+
+inputString = "bbbaacdafe"  // = true.
+//inputString = "bbc"//false
+//inputString = "zaa" //false
+//inputString = "abcdefghijklmnopqrstuvwxz" //false
+//inputString ="b" // false
+
+console.log(isBeautifulString(inputString))
+
+
+address= "prettyandsimple@example.com"
+address= "\"very.unusual.@.unusual.com\"@usual.com"
+console.log(findEmailDomain(address))
+*/
+//#endregion Ejemplos
+
+st = "abcdc" //= "abcdcba"
+console.log(buildPalindrome(st))
