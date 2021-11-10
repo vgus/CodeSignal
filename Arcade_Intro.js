@@ -756,8 +756,115 @@ function arrayMaxConsecutiveSum(inputArray, k) {
 
 //#region Dark Wilderness
 
+function growingPlant(upSpeed, downSpeed, desiredHeight) {
+    let count = 1
+    for(let i = upSpeed; i < desiredHeight; i += upSpeed )
+    {   
+        count += 1 
+        i -= downSpeed
+        console.log(i)  
+    }
+    return count
+}
 
+
+function knapsackLight(value1, weight1, value2, weight2, maxW) {
+
+    if((weight1+weight2)<=maxW)
+        return value1 + value2
+    else if(value1>value2 && weight1<=maxW)
+        return value1
+    else if(value1>value2 && weight2<=maxW)
+        return value2
+    else if  (value1<value2 && weight2<=maxW)
+        return value2
+    else if(value1<value2 && weight1<=maxW)
+        return value1
+    else if(value1==value2 && weight1<=maxW)
+        return value1
+    else if(value1==value2 && weight2<=maxW)
+        return value2
+    else 
+        return 0
+}
+
+function longestDigitsPrefix(inputString) {
+    re = /^\d+/
+    sal = re.exec(inputString)
+    //console.log(sal)
+    if (sal == null)
+        return ""
+    else
+        return sal[0]
+}
+
+function digitDegree(n) {
+    s = n.toString()
+    sal = 0
+    if(s.length == 1 && s == '1')
+        return 1
+    else if (s.length == 1 && s != '1')
+        return 0
+    else
+    {
+        let sum = 0
+        for (let i=0; i<s.length; i++)
+        {
+            sum += Number(s[i])
+        }
+        if (sum == 1)
+        {
+            return 1
+        }
+        else
+        {
+            sal = 1
+            sal += digitDegree(sum)
+            return sal
+        }
+    }
+}   
+
+function bishopAndPawn(bishop, pawn) {
+    
+    let cellsAttack = []
+    
+    let colBish = bishop[0].charCodeAt(0) - 96
+    let rawBish = Number(bishop[1])
+    let rowUp = rawBish
+    let rowDown = rawBish
+    for(col = colBish +1 ; col <=8;col ++)
+    {
+        rowUp += 1
+        rowDown -= 1
+        if(rowUp<=8)
+            cellsAttack.push(String.fromCharCode(col+96).concat(rowUp))
+        if(rowDown>=1)
+            cellsAttack.push(String.fromCharCode(col+96).concat(rowDown))
+    }
+    rowUp = rawBish
+    rowDown = rawBish
+    for( col  = colBish - 1 ; col >= 1 ;col --)
+    {
+        rowDown -= 1
+        rowUp += 1
+        if(rowUp<=8)
+            cellsAttack.push(String.fromCharCode(col+96).concat(rowUp))
+        if(rowDown>=1)
+            cellsAttack.push(String.fromCharCode(col+96).concat(rowDown))
+        
+    }
+    console.log(cellsAttack)
+    let s = new Set(cellsAttack)
+    return s.has(pawn)
+}
 //#endregion Dark Wilderness
+
+//#region Eruption of Light
+
+
+//#endregion Eruption of Light
+
 
 
 //#region Ejemplos
@@ -970,12 +1077,63 @@ console.log(firstDigit(inputString))
 
 s = "cabca"
 console.log(differentSymbolsNaive(s)) //= 3
-*/
 
-//#endregion Ejemplos
 
 
 inputArray = [2, 3, 5, 1, 6]
 k = 2
 
 console.log(arrayMaxConsecutiveSum(inputArray, k)) //= 8
+
+
+
+upSpeed = 100
+downSpeed = 10
+desiredHeight = 910 //= 10.
+
+//upSpeed= 10
+//downSpeed= 9
+//desiredHeight= 4
+
+
+console.log(growingPlant(upSpeed, downSpeed, desiredHeight)) 
+
+
+
+
+
+value1 = 10
+weight1 = 5
+value2 = 6
+weight2 = 4
+maxW = 8 //= 10.
+
+value1= 10
+weight1= 2
+value2= 11
+weight2= 3
+maxW= 1
+
+console.log(knapsackLight(value1, weight1, value2, weight2, maxW) )
+
+
+inputString = "123aa1" //= "123"
+inputString = "  3) always check for whitespaces"
+console.log(longestDigitsPrefix(inputString))
+
+n = 5 //= 0
+n = 100 // 1
+n = 91 //2
+
+console.log(digitDegree(n))
+*/
+//#endregion Ejemplos
+
+
+bishop = "h8"
+pawn = "c3" //= true
+
+
+
+console.log(bishopAndPawn(bishop, pawn)) 
+
