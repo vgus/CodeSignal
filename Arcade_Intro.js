@@ -907,21 +907,53 @@ function findEmailDomain(address) {
 
 function buildPalindrome(st) {
     let sal = st
-    if(isPalindrome(st))
+    let invSt = st.split('').reverse().join('')
+    let i  = 0
+    while(sal!=sal.split('').reverse().join(''))
     {
-        return sal
+        sal = st.concat(sal.slice(0,i).split('').reverse().join(''))
+        console.log(sal)
+        i ++
     }
+    return sal
+}
+
+
+function electionsWinners(votes, k) {
+    let votesLeader =  Math.max(...votes)
+    let sal = []
+    if(k==0)
+    {
+        
+        for (let i=0;i<votes.length;i++)
+        {
+            if(votesLeader == votes[i])
+            {
+                sal.push(votesLeader)
+            }    
+        }
+        if(sal.length>1)
+            return 0
+    }    
     else
     {
-
+        for (let i=0;i<votes.length;i++)
+        {
+            let probVotes = votes[i]+k 
+            if(probVotes > votesLeader)
+            {
+                sal.push(probVotes)
+            }
+        }
     }
-    
-}
-function isPalindrome(str)
-{
-
+    return sal.length
 }
 
+
+function isMAC48Address(inputString) {
+    rex = /^([0-9A-F]{2}-){5}([0-9A-F]{2})$/
+    return rex.test(inputString)
+}
 
 //#endregion Eruption of Light
 
@@ -1208,8 +1240,30 @@ console.log(isBeautifulString(inputString))
 address= "prettyandsimple@example.com"
 address= "\"very.unusual.@.unusual.com\"@usual.com"
 console.log(findEmailDomain(address))
+
+
+st = "abcdc" //= "abcdcba"
+
+console.log(buildPalindrome(st))
+//console.log(isPalindrome(st))
+
+
+votes = [2, 3, 5, 2]
+k = 3 //2
+
+votes= [5, 1, 3, 4, 1]
+k= 0 //
+
+//votes= [5, 1, 3, 4, 1]
+//k= 0 //1
+
+
+console.log(electionsWinners(votes, k))
 */
 //#endregion Ejemplos
 
-st = "abcdc" //= "abcdcba"
-console.log(buildPalindrome(st))
+inputString = "00-1B-63-84-45-E6" //= true
+inputString = "Z1-1B-63-84-45-E6" //= false
+inputString = "not a MAC-48 address" //= false
+
+console.log(isMAC48Address(inputString))
