@@ -957,6 +957,53 @@ function isMAC48Address(inputString) {
 
 //#endregion Eruption of Light
 
+//#region Rainbow of Clarity
+
+function isDigit(symbol) {
+    re = /\d/
+    return re.test(symbol)
+}
+
+function lineEncoding(s) {
+    let prev = s[0]
+    let sal = ''
+    let count = 0
+    for(let i=0;i<s.length;i++)
+    {
+        if(s[i]==prev)
+            count += 1
+        else
+        {
+            if(count == 1)
+                sal=sal.concat(prev)
+            else
+                sal=sal.concat(count.toString(),prev)
+            count = 1
+            prev = s[i]
+        } 
+    }
+    if(count == 1)
+        sal=sal.concat(prev)
+    else
+        sal=sal.concat(count.toString(),prev)
+    return sal
+}
+
+
+function chessKnight(cell) {
+    moves = []
+    
+    let col = cell[0].charCodeAt() - 96
+    let row = Number(cell[0])
+    rowUp = row
+    for(i = col+1;i<=col+2;i++)
+    {
+        moves.push([col,rowUp+1])
+    }
+    
+}
+
+//#endregion Rainbow of Clarity
 
 //#region Ejemplos
 /*
@@ -1259,11 +1306,29 @@ k= 0 //
 
 
 console.log(electionsWinners(votes, k))
-*/
-//#endregion Ejemplos
+
 
 inputString = "00-1B-63-84-45-E6" //= true
 inputString = "Z1-1B-63-84-45-E6" //= false
 inputString = "not a MAC-48 address" //= false
 
 console.log(isMAC48Address(inputString))
+
+
+
+symbol = '0' //= true
+//symbol = '-' //= false
+
+console.log(isDigit(symbol))
+
+
+s = "aabbbc" //= "2a3bc"
+//s = "abbcabb" // a2bca2b
+//s =  "ccccccccccccccc" //"5c"
+
+console.log(lineEncoding(s))
+*/
+//#endregion Ejemplos
+
+cell = "a1" //= 2
+chessKnight(cell) 
