@@ -991,16 +991,62 @@ function lineEncoding(s) {
 
 
 function chessKnight(cell) {
-    moves = []
+    let moves = []
     
     let col = cell[0].charCodeAt() - 96
-    let row = Number(cell[0])
-    rowUp = row
-    for(i = col+1;i<=col+2;i++)
+    let row = Number(cell[1])
+    let rowUp = row
+    let colUp = col + 1
+    let colDown = col - 1
+    //For going col up
+    for(rowUp = row+2;rowUp>row;rowUp--)
     {
-        moves.push([col,rowUp+1])
+        if(colUp<=8 && rowUp<=8)
+            moves.push(convertToChessBoard(colUp,rowUp))
+        if(colDown>=1 && rowUp<=8)
+            moves.push(convertToChessBoard(colDown,rowUp))
+        colDown -= 1
+        colUp += 1 
     }
-    
+
+    rowUp = row
+    colUp = col + 1
+    colDown = col - 1
+    for(rowDown = row-2;rowDown<row;rowDown++)
+    {
+        if(colUp<=8 && rowDown>=1)
+            moves.push(convertToChessBoard(colUp,rowDown))
+        if(colDown>=1 && rowDown>=1)
+            moves.push(convertToChessBoard(colDown,rowDown))
+        colDown -= 1
+        colUp += 1 
+    }
+
+    console.log(moves)
+    return moves.length
+}
+
+function convertToChessBoard(col, row)
+{
+    return String.fromCharCode(col+96).concat(row)
+}
+
+
+function deleteDigit(n) {
+    let aNum = Array.from(n.toString())
+    let cpANum = [...aNum]
+    let numMax = 0
+
+    for (let i=0; i<aNum.length; i++)
+    {   
+        cpANum.splice(i,1)
+        withoutOne = Number(cpANum.join(''))
+        if (withoutOne>numMax)
+            numMax = withoutOne
+        //console.log(cpANum)
+        cpANum = [...aNum]
+    }
+    return numMax
 }
 
 //#endregion Rainbow of Clarity
@@ -1327,8 +1373,18 @@ s = "aabbbc" //= "2a3bc"
 //s =  "ccccccccccccccc" //"5c"
 
 console.log(lineEncoding(s))
+
+
+cell = "a1" //= 2
+cell = "d5" //8
+cell = "c2" //6
+
+
+console.log(chessKnight(cell))
 */
 //#endregion Ejemplos
 
-cell = "a1" //= 2
-chessKnight(cell) 
+n = 152// = 52;
+n = 1001// = 101.
+
+console.log(deleteDigit(n))
