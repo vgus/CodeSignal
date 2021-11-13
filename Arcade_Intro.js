@@ -1051,6 +1051,117 @@ function deleteDigit(n) {
 
 //#endregion Rainbow of Clarity
 
+//#region Land of Logic
+
+
+function longestWord(text) {
+    
+    let re = /[^A-Za-z]/
+    let div = text.split(re)
+    //console.log(div)
+    let maxCadNum = 0
+    let maxCad = ""
+    let textSep = ""
+    for (let i=0; i<div.length; i++)
+    {
+        textSep = div[i].replace(re,"")
+        if(textSep.length>maxCadNum)
+        {
+            maxCadNum = textSep.length
+            maxCad = textSep
+        }
+    }
+    return maxCad
+}
+
+function validTime(time) {
+    let  re = /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/
+    return re.test(time)
+}
+
+
+function sumUpNumbers(inputString) {
+    let justNum = inputString.replace(/\D/g," ").replace(/\s+/g,",").split(",")
+    let sum = 0
+    for(let i=0; i<justNum.length; i++)
+    {
+        if(justNum[i]!='')
+            sum += Number(justNum[i])
+    }
+
+    return sum
+}
+
+
+function differentSquares(matrix) {
+    let sal = []
+    mat2x2 = ""
+    for(let i =0;i<matrix.length-1; i++)
+    {
+        for(let j =0;j<matrix[0].length-1; j++)
+        {
+            mat2x2 = mat2x2.concat(matrix[i][j],matrix[i][j+1],matrix[i+1][j],matrix[i+1][j+1])
+            sal.push(mat2x2)
+            mat2x2 = ""
+        }
+    }
+    let sal2 = new Set(sal)
+    return sal2.size
+
+}
+
+function digitsProduct(product) {
+    let numSal = 0
+    let primes = new Set([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
+         59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 
+         131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 
+         199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 
+         281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 
+         379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 
+         467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 
+         587, 593, 599])
+    
+    if (primes.has(product))
+        return -1
+    divisors = findPrimesDivisors(product)
+    console.log(divisors)
+    
+    return numSal
+}
+
+function findPrimesDivisors(number){
+    let primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
+        59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 
+        131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 
+        199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 
+        281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 
+        379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 
+        467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 
+        587, 593, 599]
+    let sal = []
+    let count = 0
+    while(number!=1||count<primes.length)
+    {
+        for(let i=0; i<primes.length; i++)
+        {
+            if(number%primes[i]==0)
+            {
+                sal.push(primes[i])
+                number = number/primes[i]
+                break
+            }
+        }
+        count +=1
+    }
+    return sal
+
+}
+
+
+//#endregion Land of Logic
+
+
+
 //#region Ejemplos
 /*
 inputArray = ["aba","aa","ad","vcd","aba"];
@@ -1381,10 +1492,43 @@ cell = "c2" //6
 
 
 console.log(chessKnight(cell))
-*/
-//#endregion Ejemplos
+
 
 n = 152// = 52;
 n = 1001// = 101.
 
-console.log(deleteDigit(n))
+//console.log(deleteDigit(n))
+
+
+
+text = "Ready, steady, go111111111111!" //= "steady"
+//text = "Ready[[[, steady, go!" //steady
+//text = "ABCd"
+//text = " s s d12"
+
+//console.log(longestWord(text) )
+
+
+time = "13:58" //true
+//time = "25:51" //true
+//time = "02:76" //false
+
+console.log(validTime(time))
+
+
+inputString = "2 apples, 12 oranges" //= 14
+//console.log(sumUpNumbers(inputString) )
+
+
+matrix =[[1,2,1],  [2,2,2],  [2,2,2],  [1,2,3],  [2,2,1]] //= 6
+//console.log(differentSquares(matrix))
+*/
+//#endregion Ejemplos
+
+//product = 12// = 26;
+product = 19// = -1.
+product= 450 //2559
+
+
+
+console.log(digitsProduct(product))
