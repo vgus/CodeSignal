@@ -1112,19 +1112,35 @@ function differentSquares(matrix) {
 
 function digitsProduct(product) {
     let numSal = 0
-    let primes = new Set([2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53,
-         59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 
-         131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 
-         199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 
-         281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 
-         379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 
-         467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 
-         587, 593, 599])
+    let sal = []
+    let primes = new Set([2, 3, 5, 7])
     
     if (primes.has(product))
         return -1
-    divisors = findPrimesDivisors(product)
+    if (product == 0)
+        return 10
+    let divisors = findPrimesDivisors(product).reverse()
     console.log(divisors)
+    for (let i =0; i<divisors.length;i++)
+    {
+        let factors = divisors[i]
+        for (var j =i+1; j<divisors.length;j++)
+        {
+            
+            if (factors*divisors[j]>9)
+            {       
+                
+                break
+            }
+            else
+                factors *= divisors[j]
+
+        }
+        i=j-1
+        sal.push(factors)
+    }
+    numSal = Number(sal.sort().join(''))
+    
     
     return numSal
 }
@@ -1153,6 +1169,8 @@ function findPrimesDivisors(number){
         }
         count +=1
     }
+    if (sal.length == 0)
+        sal.push(1)
     return sal
 
 }
@@ -1525,9 +1543,16 @@ matrix =[[1,2,1],  [2,2,2],  [2,2,2],  [1,2,3],  [2,2,1]] //= 6
 */
 //#endregion Ejemplos
 
-//product = 12// = 26;
-product = 19// = -1.
-product= 450 //2559
+product = 12// = 26
+//product = 19// = -1
+product= 0 //10
+//product= 450 //2559
+//product= 1 //1
+//product= 243//399
+//product= 576 //889
+//product= 360 //589
+//product= 8
+product = 2
 
 
 
