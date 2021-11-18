@@ -1130,6 +1130,39 @@ function digitsProduct(product) {
     return numSal
 }
 
+function solution(names) {
+    let s = {}
+    let namesSal = []
+    let setS = new Set()
+    for(let i=0; i<names.length;i++)
+    {
+        if(s[names[i]] == undefined)
+        {
+            s[names[i]] = 0
+            namesSal.push(names[i])
+            setS.add(names[i])
+        }
+        else
+        {
+            s[names[i]] += 1
+            let fileName = names[i].concat("(",s[names[i]],")")
+            if(setS.has(fileName))
+            {
+                s[fileName]+=1
+                s[names[i]] += 1
+                fileName = names[i].concat("(",s[names[i]],")")
+                namesSal.push(fileName)
+            }
+            else
+            {
+                namesSal.push(fileName)
+                s[fileName] = 1
+                setS.add(fileName)
+            }
+        }
+    }
+    return namesSal
+}
 
 
 //#endregion Land of Logic
@@ -1496,8 +1529,7 @@ inputString = "2 apples, 12 oranges" //= 14
 
 matrix =[[1,2,1],  [2,2,2],  [2,2,2],  [1,2,3],  [2,2,1]] //= 6
 //console.log(differentSquares(matrix))
-*/
-//#endregion Ejemplos
+
 
 product = 12// = 26
 product = 19// = -1
@@ -1513,3 +1545,21 @@ product = 19// = -1
 
 
 console.log(digitsProduct(product))
+*/
+//#endregion Ejemplos
+
+names = ["doc", "doc", "image", "doc(1)", "doc"]//= ["doc", "doc(1)", "image", "doc(1)(1)", "doc(2)"].
+
+names=["a(1)",  "a(6)","a", "a",    "a",    "a",    "a",    "a",    "a",    "a",    "a",    "a"]
+//   ["a(1)", "a(6)", "a", "a(2)", "a(3)", "a(4)", "a(5)", "a(7)", "a(8)", "a(9)", "a(10)", "a(11)"]
+//   ['a(1)', 'a(6)', 'a', 'a(2)', 'a(3)', 'a(4)', 'a(5)', 'a(7)', 'a(8)', 'a(9)']
+
+
+names =["dd", "dd(1)", "dd(2)", "dd", "dd(1)",    "dd(1)(2)", "dd(1)(1)",   "dd",   "dd(1)"]
+//     ["dd", "dd(1)", "dd(2)","dd(3)","dd(1)(1)","dd(1)(2)",   "dd(1)(1)(1)","dd(4)","dd(1)(3)"]
+//     ["dd", "dd(1)", "dd(2)","dd(2)","dd(1)(2)","dd(1)(2)(1)","dd(1)(1)",   "dd(3)","dd(1)(3)"]
+
+//     ['dd','dd(1)', 'dd(2)', 'dd(2)','dd(1)(2)','dd(1)2)(2)','dd(1)(1)','dd(3)','dd(1)(3)']
+  
+
+console.log(solution(names)) 
