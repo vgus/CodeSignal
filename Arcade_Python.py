@@ -1,6 +1,5 @@
 
-
-
+#region Meet Python
 
 def makeArrayConsecutive2(statues):
     pass
@@ -52,6 +51,9 @@ def listBeautifier(a):
         a, *res, b = res
     return res
 
+#endregion Meet Python
+
+#region Slithering in Strings
 
 def fixMessage(message):
 
@@ -96,6 +98,10 @@ def newStyleFormatting(s):
 def getCommit(commit):
     return commit.replace('0','').replace('?','').replace("+","").replace("!","")
 
+#endregion Slithering in Strings
+
+#region Lurking in Lists
+
 def twoTeams(students):
     return sum([student if i % 2 == 0 else -student for i, student in enumerate(students) ])
 
@@ -105,6 +111,10 @@ def removeTasks(k, toDo):
 
 def printList(lst):
     return 'This is your list: ' + str(lst)
+
+#endregion Lurking in Lists
+
+#region Lambda Illusions
 
 def getPoints(answers, p):
     questionPoints = lambda i, ans: i+1 if ans else -p 
@@ -125,6 +135,10 @@ def isTestSolvable(ids, k):
     for questionId in ids:
         sm += digitSum(questionId)
     return sm % k == 0
+
+#endregion Lambda Illusions
+
+#region Complexity of Comprehension
 
 def createSpiralMatrix(n):
     dirs = [(-1, 0), (0, -1), (1, 0), (0, 1)]
@@ -155,6 +169,10 @@ def coolPairs(a, b):
 def multiplicationTable(n):
     return [[(j*i) for j in range(1,n+1)] for i in range(1,n+1)]
 
+#endregion Complexity of Comprehension
+
+
+#region Fumbling in Functional
 def chessTeams(smarties, cleveries):
     return [list(elem) for elem in zip(smarties,cleveries)]
 
@@ -179,7 +197,17 @@ import functools
 def leastCommonDenominator(denominators):
     return functools.reduce(lambda x,y: x*y/gcd(x,y),denominators)
 
+#endregion Fumbling in Functional
+
+#region Caravan of Collections
+
+
+#endregion Caravan of Collections
+
+
+
 if __name__ == '__main__':
+    #region examples
     """
     students= [1, 11, 13, 6, 14]
     print(twoTeams(students))
@@ -258,3 +286,5 @@ if __name__ == '__main__':
     #denominators= [2, 3, 4, 5, 6]
     denominators= [34, 6, 3, 5, 3]
     print(leastCommonDenominator(denominators))
+
+    #endregion examples
