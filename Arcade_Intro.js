@@ -1160,6 +1160,102 @@ function solution(names) {
     return namesSal
 }
 
+function solution(code) {
+    let chars = [...code.matchAll(/[01]{8}/g)]
+    let sal = []
+    for (let i =0; i<chars.length; i++ )
+    {
+        sal.push(parseInt(chars[i],2))
+    }
+    return String.fromCharCode(...sal)
+}
+
+function solution(n) {
+    var dir = [[0,1],[1,0],[0,-1],[-1,0]]
+    var x = 0
+    var y = 0
+    //var sal = new Array(n).fill(Array(n).fill(0))
+    var sal = Array.from(Array(n),()=> new Array(n).fill(0))
+
+    var chgDir = 0
+    for (let i = 1; i<=n*n; i++)
+    {
+        sal[x][y] = i
+        //aumentar el paso
+        x = x + dir[chgDir][0] 
+        y = y + dir[chgDir][1]
+        if((x>n-1)||(y>n-1)||(sal[x][y]!=0)) //cambiar la dirección
+        {
+            x = x - dir[chgDir][0] 
+            y = y - dir[chgDir][1]
+            chgDir += 1
+
+            if(chgDir==4)
+            {
+                chgDir = 0
+            }
+            x = x + dir[chgDir][0] 
+            y = y + dir[chgDir][1]
+        }    
+ 
+    }
+    
+    return sal
+}
+
+
+function solution(grid) {
+    let sal = true
+    let mat3 = []
+    let check = [1,2,3,4,5,6,7,8,9].join("")
+    let cols = {}
+    let rows = ""
+    for(let i = 0; i<grid.length; i ++)
+    {
+        rows = [...grid[i]].sort().join("")
+        if(rows!=check)
+        {
+            sal = false
+            break
+        }
+        for(let j = 0; j<grid[0].length; j++)
+        {
+            if(i==0)
+            {
+                cols[j] = [grid[i][j]]
+            }
+            else if(i==8)
+            {
+                cols[j].push(grid[i][j])
+                if(cols[j].sort().join("") != check)
+                {
+                    sal = false
+                    break
+                }
+            }
+            else
+            {
+                cols[j].push(grid[i][j])
+            }
+            if((i==1&&j==1)||(i==4&&j==4)||(i==7&&j==7))
+            {
+                mat3 = [grid[i-1][j-1],grid[i-1][j],grid[i-1][j+1],
+                grid[i][j-1],grid[i][j],grid[i][j+1],
+                grid[i+1][j-1],grid[i+1][j],grid[i+1][j+1]].sort().join("") 
+                if(mat3!=check)
+                {
+                    sal = false
+                    break
+                }
+            }
+        }
+        if(!sal)
+            break
+    }
+    return sal
+}
+
+
 
 //#endregion Land of Logic
 
@@ -1541,8 +1637,7 @@ product = 19// = -1
 
 
 console.log(digitsProduct(product))
-*/
-//#endregion Ejemplos
+
 
 names = ["doc", "doc", "image", "doc(1)", "doc"]//= ["doc", "doc(1)", "image", "doc(1)(1)", "doc(2)"].
 
@@ -1559,3 +1654,55 @@ names =["dd", "dd(1)", "dd(2)", "dd", "dd(1)",    "dd(1)(2)",   "dd(1)(1)",   "d
 
 
 console.table(solution(names)) 
+
+
+code = "010010000110010101101100011011000110111100100001"//= "Hello!".
+//console.log(solution(code))
+
+
+n = 3
+//[[1, 2, 3],
+// [8, 9, 4],
+// [7, 6, 5]]
+console.table(solution(n))
+ */
+//#endregion Ejemplos
+
+//grid = [[1, 3, 2, 5, 4, 6, 9, 8, 7],
+//        [4, 6, 5, 8, 7, 9, 3, 2, 1],
+//        [7, 9, 8, 2, 1, 3, 6, 5, 4],
+//        [9, 2, 1, 4, 3, 5, 8, 7, 6],
+//        [3, 5, 4, 7, 6, 8, 2, 1, 9],
+//        [6, 8, 7, 1, 9, 2, 5, 4, 3],
+//        [5, 7, 6, 9, 8, 1, 4, 3, 2],
+//        [2, 4, 3, 6, 5, 7, 1, 9, 8],
+//        [8, 1, 9, 3, 2, 4, 7, 6, 5]]
+// true
+
+grid = [[1, 3, 2, 5, 4, 6, 9, 2, 7], 
+        [4, 6, 5, 8, 7, 9, 3, 8, 1], 
+        [7, 9, 8, 2, 1, 3, 6, 5, 4], 
+        [9, 2, 1, 4, 3, 5, 8, 7, 6], 
+        [3, 5, 4, 7, 6, 8, 2, 1, 9], 
+        [6, 8, 7, 1, 9, 2, 5, 4, 3], 
+        [5, 7, 6, 9, 8, 1, 4, 3, 2], 
+        [2, 4, 3, 6, 5, 7, 1, 9, 8], 
+        [8, 1, 9, 3, 2, 4, 7, 6, 5]]
+//    
+//false
+
+
+grid=   [[1,3,4, 2,5,6, 9,8,7], 
+         [4,6,8, 5,7,9, 3,2,1], 
+         [7,9,2, 8,1,3, 6,5,4], 
+         
+         [9,2,3, 1,4,5, 8,7,6], 
+         [3,5,7, 4,6,8, 2,1,9], 
+         [6,8,1, 7,9,2, 5,4,3], 
+         
+         [5,7,6, 9,8,1, 4,3,2], 
+         [2,4,5, 6,3,7, 1,9,8], 
+         [8,1,9, 3,2,4, 7,6,5]]
+//false
+
+console.table(solution(grid))
