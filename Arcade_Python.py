@@ -191,15 +191,18 @@ def collegeCourses(x, courses):
 def createHistogram(ch, assignments):
     return list(map(lambda a : ch*a,assignments))
 
-from fractions import gcd
-import functools
+#from fractions import gcd
+#import functools
 
-def leastCommonDenominator(denominators):
-    return functools.reduce(lambda x,y: x*y/gcd(x,y),denominators)
+#def leastCommonDenominator(denominators):
+#    return functools.reduce(lambda x,y: x*y/gcd(x,y),denominators)
 
 #endregion Fumbling in Functional
 
 #region Caravan of Collections
+
+def solution(document):
+    return sorted(set(document[:]))
 
 
 #endregion Caravan of Collections
@@ -208,6 +211,7 @@ def leastCommonDenominator(denominators):
 
 if __name__ == '__main__':
     #region examples
+
     """
     students= [1, 11, 13, 6, 14]
     print(twoTeams(students))
@@ -282,9 +286,12 @@ if __name__ == '__main__':
     ch= ">"
     assignments= [12, 12, 14, 3, 12, 15, 14]
     print(createHistogram(ch, assignments))
-    """
+    
     #denominators= [2, 3, 4, 5, 6]
     denominators= [34, 6, 3, 5, 3]
     print(leastCommonDenominator(denominators))
 
     #endregion examples
+    """
+    document = "Todd told Tom to trot to the timber"
+    print(solution(document))
