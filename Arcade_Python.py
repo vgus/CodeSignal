@@ -191,6 +191,7 @@ def collegeCourses(x, courses):
 def createHistogram(ch, assignments):
     return list(map(lambda a : ch*a,assignments))
 
+
 #from fractions import gcd
 #import functools
 
@@ -201,9 +202,45 @@ def createHistogram(ch, assignments):
 
 #region Caravan of Collections
 
-def solution(document):
+def UniqueCharacters(document):
     return sorted(set(document[:]))
 
+def CorrectScholarships(bestStudents, scholarships, allStudents):
+    return (set(bestStudents)-set(scholarships))==set() and (set(allStudents)-set(scholarships))!=set() and (set(scholarships)-set(allStudents)) == set()
+
+def StartupName(companies):
+    cmp1 = set(companies[0])
+    cmp2 = set(companies[1])
+    cmp3 = set(companies[2])
+    
+    res = {elem for elem in cmp1|cmp2|cmp3 if list(list(cmp1)+list(cmp2)+list(cmp3)).count(elem)==2} 
+    print(list(list(cmp1)+list(cmp2)+list(cmp3)))
+
+    for elem in cmp1|cmp2|cmp3:
+        print(list(list(cmp1)+list(cmp2)+list(cmp3)).count(elem))
+
+
+    return list(sorted(list(res)))
+
+
+def WordsRecognition(word1, word2):
+    def getIdentifier(w1, w2):
+        return "".join(sorted(set(w1)-set(w2)))
+
+    return [getIdentifier(word1, word2), getIdentifier(word2, word1)]
+
+def TransposeDictionary(scriptByExtension):
+    return sorted([[script,extension] for extension, script in scriptByExtension.items()])
+
+
+from collections import deque
+
+def DoodledPassword(digits):
+    n = len(digits)
+    res = [deque(digits) for _ in range(n)]
+    #print(res)
+    deque(map(lambda x: x.rotate(-1*(res.index(x)+1)),res), 0)
+    return [list(d) for d in res]
 
 #endregion Caravan of Collections
 
@@ -291,7 +328,53 @@ if __name__ == '__main__':
     denominators= [34, 6, 3, 5, 3]
     print(leastCommonDenominator(denominators))
 
-    #endregion examples
-    """
+    
+    
     document = "Todd told Tom to trot to the timber"
-    print(solution(document))
+    #print(UniqueCharacters(document))
+
+
+    bestStudents = [3, 5]
+    scholarships = [3, 5, 7]
+    allStudents = [1, 2, 3, 4, 5, 6, 7]
+    #true;
+    
+    bestStudents = [3, 5]
+    scholarships = [3, 5]
+    allStudents = [3, 5]
+    ###false.
+    ##
+    bestStudents = [3]
+    scholarships = [1, 3, 5]
+    allStudents = [1, 2, 3]
+    ###= false.
+    print(CorrectScholarships(bestStudents, scholarships, allStudents))
+    
+
+    companies = ["coolcompany", "nicecompany", "legendarycompany"]
+    #print(StartupName(companies))
+
+    word1 = "program" 
+    word2 = "develop"
+    # ["agmr", "delv"].
+    print(WordsRecognition(word1, word2) )
+    """
+    #endregion examples
+
+    scriptByExtension = {"validate": "py","getLimits": "md","generateOutputs": "json"}
+    #[["json", "generateOutputs"],["md", "getLimits"],["py", "validate"]]
+
+    #print(TransposeDictionary(scriptByExtension))
+
+    digits = [1, 2, 3, 4, 5]
+    #[[1, 2, 3, 4, 5], [2, 3, 4, 5, 1], [3, 4, 5, 1, 2],[4, 5, 1, 2, 3], [5, 1, 2, 3, 4]]
+    print(DoodledPassword(digits))
+                       
+
+                                   
+                                  
+
+
+
+
+    
