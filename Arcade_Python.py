@@ -239,8 +239,14 @@ def DoodledPassword(digits):
     n = len(digits)
     res = [deque(digits) for _ in range(n)]
     #print(res)
-    deque(map(lambda x: x.rotate(-1*(res.index(x)+1)),res), 0)
+    deque(map(lambda x,y: x.rotate(-y),res,range(n)), 0)
     return [list(d) for d in res]
+
+from collections import Counter
+
+def FrequencyAnalysis(encryptedText):
+    return Counter(encryptedText).most_common(1)[0][0]
+
 
 #endregion Caravan of Collections
 
@@ -368,8 +374,11 @@ if __name__ == '__main__':
 
     digits = [1, 2, 3, 4, 5]
     #[[1, 2, 3, 4, 5], [2, 3, 4, 5, 1], [3, 4, 5, 1, 2],[4, 5, 1, 2, 3], [5, 1, 2, 3, 4]]
-    print(DoodledPassword(digits))
-                       
+    #print(DoodledPassword(digits))
+
+    encryptedText = "$~NmiNmim$/NVeirp@dlzrCCCCfFfQQQ"
+    #'C'
+    print(FrequencyAnalysis(encryptedText))
 
                                    
                                   
