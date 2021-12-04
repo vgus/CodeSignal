@@ -282,7 +282,15 @@ from itertools import permutations
 def RockPaperScissors(players):
     return list(permutations(sorted(players),2))
 
+from itertools import permutations
 
+def KthPermutation(numbers, k):
+    return list(list(permutations(numbers))[k-1])
+
+from itertools import combinations
+
+def Crazyball(players, k):
+    return list(combinations(sorted(players),k))
 
 
 #endregion Itertools Kit
@@ -439,8 +447,27 @@ if __name__ == '__main__':
      #["trainee", "ninja"], ["trainee", "warrior"], 
      #["warrior", "ninja"], ["warrior", "trainee"]]
 
-    print(RockPaperScissors(players))
+    #print(RockPaperScissors(players))
 
+
+    numbers = [1, 2, 3, 4, 5]
+    k = 4
+    #print(KthPermutation(numbers,k))
+
+    players = ["Ninja", "Warrior", "Trainee", "Newbie"] 
+    k = 3
+    #[["Newbie", "Ninja", "Trainee"], 
+    #["Newbie", "Ninja", "Warrior"], 
+    #["Newbie", "Trainee", "Warrior"], 
+    #["Ninja", "Trainee", "Warrior"]]
+
+
+    print(Crazyball(players, k) )
+    
+                         
+                         
+                         
+                         
                                    
                                   
 
