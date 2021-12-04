@@ -250,6 +250,42 @@ def FrequencyAnalysis(encryptedText):
 
 #endregion Caravan of Collections
 
+#region Itertools Kit
+
+from itertools import cycle
+
+def CyclicName(name, n):
+    gen = cycle(name)
+    res = [next(gen) for _ in range(n)]
+    return ''.join(res)
+
+from itertools import dropwhile,chain,repeat
+
+def MemoryPills(pills):
+    gen = dropwhile(lambda x: len(x)%2!=0,chain(pills,repeat("",3)))
+    next(gen)
+    return [next(gen) for _ in range(3)]
+    ##for _ in range(3):
+    ##    print(next(gen))
+    ##return ""
+
+
+from itertools import count,takewhile
+
+def FloatRange(start, stop, step):
+    gen = map(lambda y: round(y,5),takewhile(lambda x: x<stop,count(start, step)))
+    return list(gen)
+
+
+from itertools import permutations
+
+def RockPaperScissors(players):
+    return list(permutations(sorted(players),2))
+
+
+
+
+#endregion Itertools Kit
 
 
 if __name__ == '__main__':
@@ -364,8 +400,7 @@ if __name__ == '__main__':
     word2 = "develop"
     # ["agmr", "delv"].
     print(WordsRecognition(word1, word2) )
-    """
-    #endregion examples
+    
 
     scriptByExtension = {"validate": "py","getLimits": "md","generateOutputs": "json"}
     #[["json", "generateOutputs"],["md", "getLimits"],["py", "validate"]]
@@ -379,6 +414,32 @@ if __name__ == '__main__':
     encryptedText = "$~NmiNmim$/NVeirp@dlzrCCCCfFfQQQ"
     #'C'
     print(FrequencyAnalysis(encryptedText))
+    """
+    #endregion examples
+    name = "nicecoder"
+    n = 15
+    #"nicecoderniceco"
+    #print(CyclicName(name,n))
+
+    pills = ["Notforgetan", "Antimoron", "Rememberin", "Bestmedicen", "Superpillsus"]
+    #= ["Bestmedicen", "Superpillsus", ""].
+    #print(MemoryPills(pills)) 
+
+
+
+    start = -0.9
+    stop = 0.45 
+    step = 0.2
+    #= [-0.9, -0.7, -0.5, -0.3, -0.1, 0.1, 0.3].
+    #print(FloatRange(start, stop, step))
+
+
+    players = ["trainee", "warrior", "ninja"]
+     #[["ninja", "trainee"], ["ninja", "warrior"], 
+     #["trainee", "ninja"], ["trainee", "warrior"], 
+     #["warrior", "ninja"], ["warrior", "trainee"]]
+
+    print(RockPaperScissors(players))
 
                                    
                                   
