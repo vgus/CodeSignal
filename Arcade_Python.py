@@ -292,6 +292,14 @@ from itertools import combinations
 def Crazyball(players, k):
     return list(combinations(sorted(players),k))
 
+from itertools import product, filterfalse
+
+def CrackingPassword(digits, k, d):
+    def createNumber(digs):
+        return "".join(map(str, digs))
+
+    return sorted(list(filterfalse(lambda x: int(x)%d!=0,map(createNumber,product(digits,repeat=k)))))
+
 
 #endregion Itertools Kit
 
@@ -462,8 +470,15 @@ if __name__ == '__main__':
     #["Ninja", "Trainee", "Warrior"]]
 
 
-    print(Crazyball(players, k) )
+    #print(Crazyball(players, k) )
+
+
+    digits = [1, 5, 2]
+    k = 2
+    d = 3
+    # = ["12", "15", "21", "51"].
     
+    print(CrackingPassword(digits, k, d))
                          
                          
                          
