@@ -303,6 +303,20 @@ def CrackingPassword(digits, k, d):
 
 #endregion Itertools Kit
 
+#region Drilling the Lists
+
+def TwinsScore(b, m):
+    return list(map(lambda x,y: x+y , b, m))
+
+
+def PressureGauges(morning, evening):
+    return [list(map(lambda x,y: min(x,y),morning,evening)),list(map(lambda x,y: max(x,y),morning,evening))]
+
+def CorrectLineup(athletes):
+    return list(map(lambda x,i:[athletes[i],athletes[i-1]], athletes, range(1,len(athletes),2)))
+
+#endregion Drilling the Lists
+
 
 if __name__ == '__main__':
     #region examples
@@ -430,8 +444,7 @@ if __name__ == '__main__':
     encryptedText = "$~NmiNmim$/NVeirp@dlzrCCCCfFfQQQ"
     #'C'
     print(FrequencyAnalysis(encryptedText))
-    """
-    #endregion examples
+    
     name = "nicecoder"
     n = 15
     #"nicecoderniceco"
@@ -479,14 +492,20 @@ if __name__ == '__main__':
     # = ["12", "15", "21", "51"].
     
     print(CrackingPassword(digits, k, d))
-                         
-                         
-                         
-                         
-                                   
-                                  
+    """
+    #endregion examples
 
+    b = [22, 13, 45, 32]
+    m = [28, 41, 13, 32]
+    #= [50, 54, 58, 64]
+    #print(TwinsScore(b, m))
 
+    morning = [3, 5, 2, 6]
+    evening = [1, 6, 6, 6]
 
+    #= [[1, 5, 2, 6], [3, 6, 6, 6]].
+    #print(PressureGauges(morning, evening))
 
+    athletes = [1, 2, 3, 4, 5, 6]
+    print(CorrectLineup(athletes))
     
