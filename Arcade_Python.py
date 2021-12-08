@@ -313,7 +313,19 @@ def PressureGauges(morning, evening):
     return [list(map(lambda x,y: min(x,y),morning,evening)),list(map(lambda x,y: max(x,y),morning,evening))]
 
 def CorrectLineup(athletes):
-    return list(map(lambda x,i:[athletes[i],athletes[i-1]], athletes, range(1,len(athletes),2)))
+    return [item for sublist in list(map(lambda x,i:[athletes[i],athletes[i-1]], athletes, range(1,len(athletes),2))) for item in sublist]
+
+
+def GroupDating(male, female):
+    return [[male[i] for i in range(len(male)) if male[i]!=female[i]],[female[i] for i in range(len(male)) if male[i]!=female[i]]]
+
+def FixTree(tree):
+    return list(map(lambda x: x.replace(' ','').center(len(x)),tree))
+
+def PrefSum(a):
+    return list(map(lambda x: sum(a[0:x+1]), range(len(a))))
+
+
 
 #endregion Drilling the Lists
 
@@ -492,8 +504,7 @@ if __name__ == '__main__':
     # = ["12", "15", "21", "51"].
     
     print(CrackingPassword(digits, k, d))
-    """
-    #endregion examples
+    
 
     b = [22, 13, 45, 32]
     m = [28, 41, 13, 32]
@@ -507,5 +518,29 @@ if __name__ == '__main__':
     #print(PressureGauges(morning, evening))
 
     athletes = [1, 2, 3, 4, 5, 6]
-    print(CorrectLineup(athletes))
+    #print(CorrectLineup(athletes))
     
+    male = [5, 28, 14, 99, 17]
+    female = [5, 14, 28, 99, 16]
+    #= [[28, 14, 17], [14, 28, 16]].
+    #print(GroupDating(male, female))
+    
+    tree = [
+    "      *  ",
+    "    *    ",
+    "***      ",
+    "    *****",
+    "  *******",
+    "*********",
+    " ***     "
+    ]
+
+    print(FixTree(tree))
+    
+    """
+    #endregion examples
+
+
+    a = [1, 2, 3]
+    #= [1, 3, 6]
+    print(PrefSum(a) )
